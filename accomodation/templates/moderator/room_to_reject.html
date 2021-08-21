@@ -1,0 +1,78 @@
+{%extends 'base.html'%}
+<!--humanize-->
+{%load humanize%}
+<!--mathfilters-->
+{%load mathfilters%}
+{%load static%}
+{%block title%} | Landlord Dashboard{%endblock%}
+
+{%block content%}
+
+<section id="showcase-inner" class="py-2 text-white bg-success">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="display-4">Moderator's Dashboard</h1>
+                <p class="lead">welcome, <b class="text-danger">{{user}} </b></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Alerts -->
+
+{%include 'partials/_alerts.html'%}
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{%url 'accounts:moderator_dashboard'%}">
+                        <i class="fas fa-home"></i> Home</a>
+                </li>
+                <li class="breadcrumb-item active"> General Reports</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Content Row -->
+<div class="row">
+    <div class="col-md-12 mx-auto">
+        <div class="card">
+            <div class="card-header text-white" style="background-color: greenyellow;">
+                <h4><i class="fas fa-user-plus"></i>Dissaprove Room</h4>
+            </div>
+            <div class="card-body">
+                <!--Alerts-->
+                {%include 'partials/_alerts.html'%}
+                <form action="{%url  'accounts:dissaprove_room' room.id%}" method="POST">
+                    {%csrf_token%}
+
+                    <div class="form-group">
+                        <label for="room">Room</label>
+                        <input type="text" name="room" value="{{room.title}}" class="form-control" disabled />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="landlord">Landlord</label>
+                        <input type="text" name="landlord" value="{{room.landlord}}" class="form-control" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">Reason:</label>
+                        <input type="text" name="reason" placeholder="Reason for Rejection" class="form-control"
+                            required />
+                    </div>
+
+                    <input type="submit" value="Send" class="btn btn-warning btn-block" />
+                </form>
+                <div class="mt-3 text-center">
+                    <a href="{%url  'accounts:moderator_dashboard'%}" style="color: green;">Back to Dashboard</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{%endblock%}

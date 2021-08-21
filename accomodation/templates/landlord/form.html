@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+<!--block title-->
+{%block title%}| Edit Room{%endblock%}
+<!--block content-->
+{%block content%}
+<section id="register" class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header text-white" style="background-color: orange;">
+                        <h4 style="color: green;"><i class="fas fa-plus"></i> Edit Room</h4>
+                    </div>
+                    <div class="card-body">
+
+                    <form action="" class="form-horizontal" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include 'landlord/form_template.html'%}
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button class="btn btn-warning btn-block" type="submit">SUBMIT</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                </div>
+                </div>
+                
+                </div>
+                </div>
+                </section>
+{%endblock%}

@@ -1,0 +1,209 @@
+{%extends 'base.html'%}
+
+{%load humanize%}
+{%block title%} | {{room.title}}{%endblock%}
+
+{%block content%}
+
+<section id="showcase-inner" class="py-1 text-white btn-warning">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="display-4">{{room.title}}</h1>
+                <p class="lead">
+                    <i class="fas fa-map-marker"></i> {{room.address}}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{%include 'partials/_alerts.html'%}
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+    <div class="container">
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{%url 'apartments:rooms'%}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{%url 'apartments:rooms'%}">Rooms</a>
+                </li>
+                <li class="breadcrumb-item active">{{room.title}}</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- room -->
+<section id="listing" class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <!-- Home Main Image -->
+                <img src="{{room.photo_main.url}}" alt="" class="img-main img-fluid mb-3">
+                <!-- Thumbnails -->
+                <div class="row mb-5 thumbs">
+                    {%if room.photo_1%}
+                    <div class="col-md-2">
+                        <a href="{{room.photo_1.url}}" data-lightbox="home-images">
+                            <img src="{{room.photo_1.url}}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {%endif%}
+                    {%if room.photo_2%}
+                    <div class="col-md-2">
+                        <a href="{{room.photo_2.url}}" data-lightbox="home-images">
+                            <img src="{{room.photo_2.url}}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {%endif%}
+                    {%if room.photo_3%}
+                    <div class="col-md-2">
+                        <a href="{{room.photo_3.url}}" data-lightbox="home-images">
+                            <img src="{{room.photo_3.url}}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {%endif%}
+                    {%if room.photo_4%}
+                    <div class="col-md-2">
+                        <a href="{{room.photo_4.url}}" data-lightbox="home-images">
+                            <img src="{{room.photo_4.url}}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {%endif%}
+                    {%if room.photo_5%}
+                    <div class="col-md-2">
+                        <a href="{{room.photo_5.url}}" data-lightbox="home-images">
+                            <img src="{{room.photo_5.url}}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {%endif%}
+                    {%if room.photo_6%}
+                    <div class="col-md-2">
+                        <a href="{{room.photo_6.url}}" data-lightbox="home-images">
+                            <img src="{{room.photo_6.url}}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {%endif%}
+
+                    {%if room.photo_7%}
+                    <div class="col-md-2">
+                        <a href="{{room.photo_7.url}}" data-lightbox="home-images">
+                            <img src="{{room.photo_7.url}}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {%endif%}
+                    {%if room.photo_8%}
+                    <div class="col-md-2">
+                        <a href="{{room.photo_8.url}}" data-lightbox="home-images">
+                            <img src="{{room.photo_8.url}}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {%endif%}
+                    {%if room.photo_9%}
+                    <div class="col-md-2">
+                        <a href="{{room.photo_9.url}}" data-lightbox="home-images">
+                            <img src="{{room.photo_9.url}}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    {%endif%}
+                </div>
+                <!-- Fields -->
+                <div class="row mb-5 fields">
+                    <div class="col-md-12">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-secondary">
+                                <i class="fas fa-money-bill-alt"></i> Rent Per Week:
+                                <span class="float-right">$ {{room.rent}}</span>
+                            </li>
+                            <li class="list-group-item text-secondary">
+                                <i class="fas fa-bed"></i> Bond:
+                                <span class="float-right">$ {{room.bond_amount}}</span>
+                            </li>
+                            <li class="list-group-item text-secondary">
+                                <i class="fas fa-th-large"></i> Size:
+                                <span class="float-right">{{room.size}}</span>
+                            </li>
+                            <li class="list-group-item text-secondary">
+                                <i class="fas fa-calendar"></i> Posted On:
+                                <span class="float-right">{{room.list_date}}</span>
+                            </li>
+
+                            <li class="list-group-item text-secondary">
+                                <i class="fas fa-user"></i> Landlord:
+                                <span class="float-right">{{room.landlord}}</span>
+                            </li>
+                            
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Description -->
+                <div class="row mb-5">
+                    <div class="col-md-12">
+                        {{room.description}}
+                    </div>
+                </div>
+
+                <div class="col-md-12 mb-4">
+                
+                    <button class="btn-warning btn-block" data-toggle="modal" data-target="#inquiryModal">Make An
+                        Inquiry</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                
+                <button class="btn-warning btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Make An
+                    Inquiry</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Inquiry Modal -->
+<div class="modal fade" id="inquiryModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{%url 'apartments:inquiry'%}" method="post">
+                    {%csrf_token%}
+                    {%if user.is_authenticated%}
+                    <input type="hidden" name="user_id" value="{{user.id}}">
+                    {%else%}
+                    <input type="hidden" name="user_id" value="0">
+                    {%endif%}
+                    <input type="hidden" name="landlord_email" value="{{room.landlord}}">
+                    <input type="hidden" name="room_id" value="{{room.id}}">
+
+                    <div class="form-group">
+                        <label for="property_name" class="col-form-label">Room:</label>
+                        <input type="text" name="room" class="form-control" value="{{room.title}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-form-label">Email:</label>
+                        <input type="email" name="email" class="form-control" {%if user.is_authenticated%}
+                            value="{{user.email}}" {%endif%} required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="col-form-label">Message:</label>
+                        <textarea name="message" class="form-control"></textarea>
+                    </div>
+                    <hr>
+                    <input type="submit" value="Send" class="btn btn-block btn-warning">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

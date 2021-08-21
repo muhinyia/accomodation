@@ -1,0 +1,8 @@
+#main {
+  background: url(../img/accomodation.jpg) no-repeat top center fixed/cover;
+  position: relative;
+}
+.nav-items {
+  opacity: 0.9;
+  text-transform: uppercase;
+}

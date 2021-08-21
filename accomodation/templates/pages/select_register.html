@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+{%block title%} | Account Type {%endblock%}
+{%block content%}
+<section id="login" class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-header text-white" style="background-color: orange;">
+                        <h4><i class="fas fa-user-plus py-4"></i> Please Select Account type to register for</h4>
+                    </div>
+                    <div class="card-body">
+                        {%include 'partials/_alerts.html'%}
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <a href="{%url 'accounts:student_register'%}" class="btn btn-secondary btn-block py-3">
+                                    Register For a Student Account</a>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <a href="{%url 'accounts:landlord_register'%}" class="btn btn-info btn-block py-3">
+                                    Register For a Landlord Account </a>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 text-center">
+                            <a href="{%url 'apartments:index'%}" style="color: orange;">Have an account Already? Login
+                                here</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{%endblock%}

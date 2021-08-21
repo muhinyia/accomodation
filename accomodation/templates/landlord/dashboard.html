@@ -1,0 +1,80 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%} | Landlord Dashboard{%endblock%}
+
+{%block content%}
+
+<section id="showcase-inner" class="py-2 text-white bg-success">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="display-4">Landlord's Dashboard</h1>
+                <p class="lead">welcome, <b class="text-danger">{{user}} </b></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Alerts -->
+
+{%include 'partials/_alerts.html'%}
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{%url 'accounts:landlord_dashboard'%}">
+                        <i class="fas fa-home"></i> Home</a>
+                </li>
+                <li class="breadcrumb-item active"> Dashboard</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<section id="dashboard" class="py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {%if rooms%}
+                <p>Here are your apartments</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Room</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Edit Room</th>
+                            <th scope="col">Delete Room</th>
+                            <th scope="col">See Inquiries</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for room in rooms%}
+                        <tr>
+                            
+                            <td>{{room.title}}</td>
+                            <td>{{room.status}}</td>
+                            <td>
+                                <a class="btn btn-light" href="{%url  'apartments:RoomUpdate' room.id%}">Edit Room</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-light" href="{%url  'apartments:RoomDelete' room.id%}">Delete Room</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-light" href="{%url  'accounts:get_inquiry' room.id%}">View Inquiry</a>
+                            </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+                {%else%}
+                <p>There are no rooms for you</p>
+                {%endif%}
+                <p><a class="btn btn-warning btn-block" href="{%url  'apartments:RoomCreate'%}">Add a New Room</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{%endblock%}

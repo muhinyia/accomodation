@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+<!--title-->
+{% block title %}|Delete Room{% endblock %}
+<!--Body-->
+{% block content %}
+<div class="jumbotron">
+    <div class="col-md-12">
+        <h1>Delete Room "{{ object.title }}"</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete "{{ object }}"?</p>
+            <input type="submit" class="btn btn-secondary" value="Confirm" />
+            <a href="{%url 'accounts:landlord_dashboard'%}" class="btn btn-info">Back</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

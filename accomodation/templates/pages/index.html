@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+{%load humanize%}
+{%block title%} | Welcome{%endblock%}
+{%block content%}
+
+{%include 'partials/_alerts.html'%}
+<!-- Showcase -->
+
+
+
+<div class="container py-5" id="main">
+    <div class="row">
+        <div class="col-md-12 text-center">
+        <h5><a class="btn btn-warning btn-large" href="{%url 'accounts:landlord_login'%}">Are You a Landlord?</a></h5>
+        </div>
+    </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                <h5>
+                    <a href="{%url 'accounts:student_login'%}"class="btn btn-success btn-large"> Rent A Room</a>
+                </h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h5>
+                    <a href="{%url 'accounts:moderator_login'%}" class="btn btn-warning btn-large"> Login as Moderator</a>
+                </h5>
+            </div>
+        </div>
+    </div>
+
+
+{%endblock%}

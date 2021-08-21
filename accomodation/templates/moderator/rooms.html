@@ -1,0 +1,81 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%} | moderator Dashboard{%endblock%}
+
+{%block content%}
+
+<section id="showcase-inner" class="py-2 text-white bg-success">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="display-4">Moderator's Dashboard</h1>
+                <p class="lead">welcome, <b class="text-danger">{{user}} </b></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Alerts -->
+
+{%include 'partials/_alerts.html'%}
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{%url 'accounts:moderator_dashboard'%}">
+                        <i class="fas fa-home"></i> Home</a>
+                </li>
+                <li class="breadcrumb-item active"> Rooms Submitted for Approval</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<section id="dashboard" class="py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {%if rooms%}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Room</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Landlord</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Approve Room</th>
+                            <th scope="col">Dissaprove Room</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for room in rooms%}
+                        <tr>
+
+                            <td>{{room.title}}</td>
+                            <td>{{room.status}}</td>
+                            <td>{{room.landlord}}</td>
+                            <td>{{room.description}}</td>
+                            <td>
+                                <a class="text-primary" href="{%url  'accounts:approve_room' room.id%}">Approve Room</a>
+                            </td>
+                            <td>
+                 
+                                <a class="text-danger" href="{%url  'accounts:reject_room' room.id%}">Dissaprove Room</a>
+                            </td>
+                            
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+                {%else%}
+                <p>There are no rooms for you</p>
+                {%endif%}
+                <p><a class="btn btn-warning btn-block" href="{%url  'accounts:moderator_dashboard'%}">Back to Dashboard</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{%endblock%}
